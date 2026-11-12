@@ -6,16 +6,29 @@
  * Compares iterator traversal with get(index) for 50,000 and
  * 500,000 integers. Based on Chapter 20 and Module 4 examples.
  *
- * RESULTS: Replace these blanks after running on your computer.
- * 50,000: iterator = ___ ms; get(index) = ___ ms.
- * 500,000: iterator = ___ ms; get(index) = ___ ms.
- * Explain how your measured times changed when the size grew tenfold.
+ * RESULTS:
+ * With 50,000 integers, the iterator took 3.640 milliseconds,
+ * while get(index) took 934.296 milliseconds.
+ * With 500,000 integers, the iterator took 4.365 milliseconds,
+ * while get(index) took 93,877.234 milliseconds, or about 94 seconds.
  *
- * An iterator moves from one node to the next, so a full traversal
- * is O(n). Each get(index) starts from the nearer end of the list.
- * Repeating get(index) for every position makes traversal O(n^2).
- * Timing varies with hardware, JVM warm-up, and other running programs;
- * one run is a classroom comparison, not a precise benchmark.
+ * When the list became ten times larger, the get(index) traversal
+ * took about 100 times as long. The iterator time increased only
+ * slightly in this run. These results showed a much larger slowdown
+ * with get(index) as the list grew.
+ *
+ * The iterator moves through the list from one node to the next.
+ * Each get(index) call starts from the closer end and follows links
+ * to reach that position. Doing this for every index repeats much
+ * of the work, which explains why the larger list took so long.
+ *
+ * Iterator traversal is O(n), while traversing the entire LinkedList
+ * with repeated get(index) calls is O(n^2). My iterator times did
+ * not increase tenfold, but one timing run can be affected by JVM
+ * warm-up and other activity on the computer.
+ *
+ * Both methods returned the expected sums for both list sizes.
+ * The small-list tests and the list-size checks also passed.
  */
 
 package com.mycompany.bronson_module_4_2;
